@@ -8,6 +8,7 @@ const MapComponent = withScriptjs(withGoogleMap((props) => {
 			name={restaurant.title}
 			key={restaurant.title}
 			location={restaurant.position}
+			animation={restaurant.animiation}
 		/>
 	)
 	

@@ -27,7 +27,7 @@
 
 .text-search {
 	margin-top: 5px;
-	height: 30px;
+	height: 28px;
 	width: 210px;
 }
 
@@ -35,6 +35,10 @@
 	height: 35px;
 	width: 80px;
 	cursor: pointer;
+}
+
+.search-button:hover, .text-search:hover {
+	border: 2px solid #0000cc;
 }
 
 .restaurant-list {
@@ -49,8 +53,6 @@
 	list-style: none;
 	text-align: left;
 	height: 50px;
-	animation-name: change-color;
-	animation-direction: revers;
 }
 
 .item-list:hover {
