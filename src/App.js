@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MapComponent from './Map.js';
+import FloatingPanel from './FloatingPanel.js';
 
 class App extends Component {
 
@@ -25,11 +26,14 @@ class App extends Component {
   render() {
     return (
       <div className='app'>
+        <div className='floating-panel'>
+          <FloatingPanel restaurants={this.state.locations} />
+        </div>
         <MapComponent 
           locations={this.state.locations}
           googleMapURL={`https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing,places&v=3&key=AIzaSyD0STGhDzOr2KtMAf6Qp9cir6yLZuaybbE`}
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `100vh`, width: `100vw` }} />}
+          containerElement={<div style={{ height: `100vh`, width: `100vw` }} id='map'/>}
           mapElement={<div style={{ height: `100%` }} />}
         />
       </div>

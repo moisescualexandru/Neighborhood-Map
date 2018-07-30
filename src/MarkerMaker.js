@@ -6,7 +6,7 @@ class MarkerMaker extends Component {
 
 	render() {
 		return(
-			<Marker position={this.props.location} title={this.props.name} />
+			<Marker position={this.props.location} title={this.props.name}/>
 		);
 	}
 }
