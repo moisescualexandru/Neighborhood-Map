@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import MapComponent from './Map.js';
 import FloatingPanel from './FloatingPanel.js';
+import SearchBox from './SearchBox.js';
 
 class App extends Component {
 
@@ -27,6 +28,7 @@ class App extends Component {
     return (
       <div className='app'>
         <div className='floating-panel'>
+          <SearchBox />
           <FloatingPanel restaurants={this.state.locations} />
         </div>
         <MapComponent 

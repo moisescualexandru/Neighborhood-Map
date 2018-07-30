@@ -18,10 +18,29 @@
     position: absolute;
 }
 
+.search-box {
+	height: 50px;
+	width: 100%;
+	padding: 10px;
+	border-bottom: 1px solid #999;
+}
+
+.text-search {
+	margin-top: 5px;
+	height: 30px;
+	width: 210px;
+}
+
+.search-button {
+	height: 35px;
+	width: 80px;
+	cursor: pointer;
+}
+
 .restaurant-list {
 	margin: 0;
 	padding-left: 5px;
-	padding-top: 20px;
+	text-align: center;
 }
 
 .item-list {
@@ -29,10 +48,15 @@
 	border-bottom: 2px solid #999;
 	list-style: none;
 	text-align: left;
+	height: 50px;
+	animation-name: change-color;
+	animation-direction: revers;
 }
 
 .item-list:hover {
-	padding-left: 10px;
+	padding-left: 15px;
 	cursor: pointer;
+	color: #0000cc;
 }
+
 
