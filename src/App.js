@@ -3,6 +3,7 @@ import './App.css';
 import MapComponent from './Map.js';
 import FloatingPanel from './FloatingPanel.js';
 import SearchBox from './SearchBox.js';
+import escapeRegExp from 'escape-string-regexp';
 
 class App extends Component {
 
@@ -27,9 +28,12 @@ class App extends Component {
         currentPosition: { lat: 44.418091, lng: 26.123015 },
         zoom: 15
       }
-    ]
+    ],
+
+    query: ''
   }
 
+//Handle the event when a marker or list item is clicked
   handleToggleOpen = (id) => {
     this.setState((state) => ({
       locations: state.locations.map((l) => {
@@ -47,6 +51,7 @@ class App extends Component {
     this.zoomToArea(id);
   }
 
+//Handle the event when a marker's Close button or the list item is clicked again
   handleToggleClose = (id) => {
     this.setState((state) => ({
       locations: state.locations.map((l) => {
@@ -61,6 +66,7 @@ class App extends Component {
     this.zoomOut();
   }
 
+//Zoomig in to the area where the restaurant is positioned
   zoomToArea = (id) => {
     let loc = {
       currentPosition: '',
@@ -73,6 +79,7 @@ class App extends Component {
     this.setState({ defaultPosition: array })
   }
 
+//Zooming out when list item clicked again or marker's close button clicked
   zoomOut = () => {
     const loc = [ {
       currentPosition: { lat: 44.418091, lng: 26.123015 },
@@ -82,19 +89,36 @@ class App extends Component {
     this.setState({ defaultPosition: loc })
   }
 
+
+  updateQuery=(query) => {
+    this.setState({ query });
+  }
+
+//Rendering the app
   render() {
+
+    //updating the view with based on the value introduced in search box
+    let showingRestaurants;
+    if(this.state.query) {
+      const match = new RegExp(escapeRegExp(this.state.query), 'i');
+      showingRestaurants = this.state.locations.filter((restaurant) => match.test(restaurant.title) || match.test(restaurant.address));
+    } else {
+      showingRestaurants = this.state.locations;
+    }
+    
+    //rendering the view
     return (
       <div className='app'>
         <div className='floating-panel'>
-          <SearchBox />
+          <SearchBox updateQuery={this.updateQuery}/>
           <FloatingPanel 
-            restaurants={this.state.locations} 
+            restaurants={showingRestaurants} 
             handleToggleOpen={this.handleToggleOpen}
             handleToggleClose={this.handleToggleClose}
           />
         </div>
         <MapComponent 
-          locations={this.state.locations}
+          locations={showingRestaurants}
           googleMapURL={`https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing,places&v=3&key=AIzaSyD0STGhDzOr2KtMAf6Qp9cir6yLZuaybbE`}
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={<div style={{ height: `100vh`, width: `100vw` }} id='map'/>}

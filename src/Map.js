@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import MarkerMaker from './MarkerMaker';
 
+//Rendering the Google Map and the Markers. 
+//The Render function was written with help from react-google-maps git-hub documentation
 const MapComponent = withScriptjs(withGoogleMap((props) => {
 	const markers = props.locations.map(restaurant => 
 		<MarkerMaker
