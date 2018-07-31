@@ -94,6 +94,10 @@ class App extends Component {
     this.setState({ query });
   }
 
+  clearQuery=() => {
+    this.setState({ query: '' });
+  }
+
 //Rendering the app
   render() {
 
@@ -110,7 +114,11 @@ class App extends Component {
     return (
       <div className='app'>
         <div className='floating-panel'>
-          <SearchBox updateQuery={this.updateQuery}/>
+          <SearchBox 
+            updateQuery={this.updateQuery} 
+            clearQuery={this.clearQuery}
+            query={this.state.query}
+          />
           <FloatingPanel 
             restaurants={showingRestaurants} 
             handleToggleOpen={this.handleToggleOpen}
