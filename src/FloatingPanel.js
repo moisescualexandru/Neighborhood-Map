@@ -13,8 +13,12 @@ class FloatingPanel extends Component {
 						onClick={() => restaurant.isOpen === false ? this.props.handleToggleOpen(restaurant.id) : this.props.handleToggleClose(restaurant.id)}
 						>
 							<h3>{restaurant.title}</h3>
-							<p>{restaurant.address}</p>
-							<img src="" alt=""/>
+							{restaurant.isOpen && (
+								<div className={restaurant.isOpen ? 'slidedown' : 'slideup'}>
+									<p>{restaurant.address}</p>
+									<img src={RestaurantIcon} alt=""/>
+								</div>
+							)}
 						</li>
 					)}
 				</ul>
