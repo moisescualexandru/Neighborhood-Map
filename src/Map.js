@@ -6,9 +6,12 @@ const MapComponent = withScriptjs(withGoogleMap((props) => {
 	const markers = props.locations.map(restaurant => 
 		<MarkerMaker
 			name={restaurant.title}
-			key={restaurant.title}
+			key={restaurant.id}
 			location={restaurant.position}
-			animation={restaurant.animiation}
+			address={restaurant.address}
+			onClick={() => props.handleToggleOpen(restaurant.id)}
+			onCloseClick={() => props.handleToggleClose(restaurant.id)}
+			isOpen={restaurant.isOpen}
 		/>
 	)
 	

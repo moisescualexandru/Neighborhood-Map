@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RestaurantIcon from './icons/restaurang_map_icon_1x.png';
 
 class FloatingPanel extends Component {
 	render() {
@@ -6,8 +7,14 @@ class FloatingPanel extends Component {
 			<div className='restaurant-list'>
 				<ul className='restaurant-list'>
 					{this.props.restaurants.map( restaurant => 
-						<li className='item-list' key={restaurant.title}>
+						<li 
+						className={restaurant.isOpen === false ? 'item-list' : 'item-list selected'} 
+						key={restaurant.id}
+						onClick={() => restaurant.isOpen === false ? this.props.handleToggleOpen(restaurant.id) : this.props.handleToggleClose(restaurant.id)}
+						>
 							<h3>{restaurant.title}</h3>
+							<p>{restaurant.address}</p>
+							<img src="" alt=""/>
 						</li>
 					)}
 				</ul>
