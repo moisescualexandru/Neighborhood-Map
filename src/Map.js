@@ -14,11 +14,15 @@ const MapComponent = withScriptjs(withGoogleMap((props) => {
 			isOpen={restaurant.isOpen}
 		/>
 	)
+
+	var state = {
+		
+	}
 	
 	return(
 		<GoogleMap
-			defaultZoom={15}
-			center={{ lat: 44.418091, lng: 26.123015 }}
+			zoom={props.currentPosition[0].zoom}
+			center={props.currentPosition[0].currentPosition}
 		>
 		{markers}
 		</GoogleMap>

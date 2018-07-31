@@ -20,6 +20,13 @@ class App extends Component {
       {id: 'ChIJl86ffFb-sUARhLh7M6DGkp8', title: 'Casa Oprescu', position: {lat: 44.406775, lng: 26.112055}, address: 'Strada Secerei, București', isOpen: false},
       {id: 'ChIJ0yKCLlT-sUARWYCyftq-z6w', title: 'Trattoria Rossini', position: {lat: 44.404736, lng: 26.111589}, address: 'Calea Piscului 10, București', isOpen: false},
       {id: 'ChIJkTKjVAn_sUARROPu0HCkWSk', title: 'Il Cantuccio', position: {lat: 44.416765, lng: 26.093083}, address: 'Strada Fabrica de Chibrituri 2, București', isOpen: false}
+    ],
+
+    defaultPosition: [
+      {
+        currentPosition: { lat: 44.418091, lng: 26.123015 },
+        zoom: 15
+      }
     ]
   }
 
@@ -36,6 +43,8 @@ class App extends Component {
             return l;
       })
     }))
+
+    this.zoomToArea(id);
   }
 
   handleToggleClose = (id) => {
@@ -48,6 +57,29 @@ class App extends Component {
           return l;
       })
     }))
+
+    this.zoomOut();
+  }
+
+  zoomToArea = (id) => {
+    let loc = {
+      currentPosition: '',
+      zoom: 17
+    };
+    let array = [];
+    this.state.locations.filter((r) => id === r.id).map((l) => loc.currentPosition = l.position);
+    
+    array.push(loc);
+    this.setState({ defaultPosition: array })
+  }
+
+  zoomOut = () => {
+    const loc = [ {
+      currentPosition: { lat: 44.418091, lng: 26.123015 },
+      zoom: 15
+    }]
+
+    this.setState({ defaultPosition: loc })
   }
 
   render() {
@@ -69,6 +101,7 @@ class App extends Component {
           mapElement={<div style={{ height: `100%` }} />}
           handleToggleOpen={this.handleToggleOpen}
           handleToggleClose={this.handleToggleClose}
+          currentPosition={this.state.defaultPosition}
         />
       </div>
     );
