@@ -34,6 +34,7 @@
 	width: 100%;
 	padding: 10px;
 	border-bottom: 1px solid #999;
+	margin-top: 20px;
 }
 
 .text-search {
@@ -68,6 +69,7 @@
 	list-style: none;
 	text-align: left;
 	background-color: #fff;
+	margin-bottom: 20px;
 }
 
 .item-list:hover {
