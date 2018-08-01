@@ -9,18 +9,18 @@ class App extends Component {
 
   state = {
     locations:[
-      {id: 'ChIJj6GtdBf_sUARWEHbbzJbkWg', title: "Vu's Rooftop Restaurant", position: {lat: 44.425543, lng: 26.106787}, address: 'Splaiul Unirii, nr. 6, bloc B3A, etaj 8, Bucuresti', isOpen: false},
-      {id: 'ChIJN2wU7CD_sUARxTw8ewsbZ14', title: 'Restaurant Beijing', position: {lat: 44.427528, lng: 26.124222}, address: 'Str. Verdetei, 11, Bucuresti', isOpen: false},
-      {id: 'ChIJNZ-_MBr_sUARuJa9gHg45T4', title: 'Restaurant Thang Long', position: {lat: 44.421457, lng: 26.107528}, address: 'Strada Bucur 11, Bucuresti', isOpen: false},
-      {id: 'ChIJ4aRaDRz_sUAR1TfF1iw5Ifo', title: 'Sardin', position: {lat: 44.42002, lng: 26.112973}, address: 'Bulevardul Mircea Voda 39H, Bucuresti', isOpen: false},
-      {id: 'ChIJ4xwzzx3_sUARINSwI4smO_o', title: 'Trattoria Pane e Vino', position: {lat: 44.419777, lng: 26.115798}, address: 'Strada Nerva Traian, Bucuresti', isOpen: false},
-      {id: 'ChIJZwyjgwT_sUAR0tMUYifcn4M', title: 'Thalia Restaurant', position: {lat: 44.416313, lng: 26.106931}, address: 'Strada Cuza Voda 147, Bucuresti', isOpen: false},
-      {id: 'ChIJM8_2h-T-sUARp29QHezF6TQ', title: 'Restaurant Casa Brandusa', position: {lat: 44.416288, lng: 26.124088}, address: 'Strada Branduselor 56, Bucuresti', isOpen: false},
-      {id: 'ChIJI9wTW_7-sUARPkVvocUuoFA', title: 'At Calinescu Tavern', position: {lat: 44.410494, lng: 26.112488}, address: 'Strada Piscului 16, Bucuresti', isOpen: false},
-      {id: 'ChIJkaJhHPn-sUARIzQDR8Q6CB0', title: 'Bohemia', position: {lat: 44.408599, lng: 26.118087}, address: 'Bulevardul Tineretului 55, Bucuresti', isOpen: false},
-      {id: 'ChIJl86ffFb-sUARhLh7M6DGkp8', title: 'Casa Oprescu', position: {lat: 44.406775, lng: 26.112055}, address: 'Strada Secerei, Bucuresti', isOpen: false},
-      {id: 'ChIJ0yKCLlT-sUARWYCyftq-z6w', title: 'Trattoria Rossini', position: {lat: 44.404736, lng: 26.111589}, address: 'Calea Piscului 10, Bucuresti', isOpen: false},
-      {id: 'ChIJkTKjVAn_sUARROPu0HCkWSk', title: 'Il Cantuccio', position: {lat: 44.416765, lng: 26.093083}, address: 'Strada Fabrica de Chibrituri 2, Bucuresti', isOpen: false}
+      {id: '57967c29498ecfecfe4018a8', title: "Vu's Rooftop Restaurant", position: {lat: 44.425543, lng: 26.106787}, address: 'Splaiul Unirii, nr. 6, bloc B3A, etaj 8, Bucuresti', isOpen: false},
+      {id: '4b82a348f964a520e0db30e3', title: 'Restaurant Beijing', position: {lat: 44.427528, lng: 26.124222}, address: 'Str. Verdetei, 11, Bucuresti', isOpen: false},
+      {id: '4daf16a4fc6063dbfa86915f', title: 'Restaurant Thang Long', position: {lat: 44.421457, lng: 26.107528}, address: 'Strada Bucur 11, Bucuresti', isOpen: false},
+      {id: '58b2dc009435a903b9762e96', title: 'Sardin', position: {lat: 44.42002, lng: 26.112973}, address: 'Bulevardul Mircea Voda 39H, Bucuresti', isOpen: false},
+      {id: '4f044c31f79000b5dd2382a5', title: 'Trattoria Pane e Vino', position: {lat: 44.419777, lng: 26.115798}, address: 'Strada Nerva Traian, Bucuresti', isOpen: false},
+      {id: '4cc1bff8914137048b44af55', title: 'Thalia Restaurant', position: {lat: 44.416313, lng: 26.106931}, address: 'Strada Cuza Voda 147, Bucuresti', isOpen: false},
+      {id: '4e0b6eb318388f71c35f63a9', title: 'Restaurant Casa Brandusa', position: {lat: 44.416288, lng: 26.124088}, address: 'Strada Branduselor 56, Bucuresti', isOpen: false},
+      {id: '4c2646a4db5195213c5e2c3a', title: 'At Calinescu Tavern', position: {lat: 44.410494, lng: 26.112488}, address: 'Strada Piscului 16, Bucuresti', isOpen: false},
+      {id: '56ab9d7b498eddf7b7021101', title: 'Bohemia', position: {lat: 44.408599, lng: 26.118087}, address: 'Bulevardul Tineretului 55, Bucuresti', isOpen: false},
+      {id: '4e15ebbaae60a0ac0637373b', title: 'Casa Oprescu', position: {lat: 44.406775, lng: 26.112055}, address: 'Strada Secerei, Bucuresti', isOpen: false},
+      {id: '56439b3b498ed6a787d7e5f5', title: 'Trattoria Rossini', position: {lat: 44.404736, lng: 26.111589}, address: 'Calea Piscului 10, Bucuresti', isOpen: false},
+      {id: '4b62c590f964a52009522ae3', title: 'Il Cantuccio', position: {lat: 44.416765, lng: 26.093083}, address: 'Strada Fabrica de Chibrituri 2, Bucuresti', isOpen: false}
     ],
 
     defaultPosition: [
@@ -30,7 +30,19 @@ class App extends Component {
       }
     ],
 
-    query: ''
+    query: '',
+    items: []
+  }
+
+  componentDidMount() {
+    for(let i=0; i<this.state.locations.length; i++) {
+      fetch(`https://api.foursquare.com/v2/venues/${this.state.locations[i].id}?client_id=10UW0LCTUOEXUWZX3AWVQBRPVP2HPLP0NI2ATHTSHF25CL5L&client_secret=VAEL3BT1BNDACP2V04BNBC3PCWZAXWUJJX4TKGKHQR2CUHU5&v=20180323`)
+        .then(response => response.json())
+        .then(data => this.setState(state => ({
+          items: state.items.concat([ data ])
+        }))).then(console.log(this.state.items))
+        .catch(error => alert('Request unsuccesful'));
+    }
   }
 
 //Handle the event when a marker or list item is clicked

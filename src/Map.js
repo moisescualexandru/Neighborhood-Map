@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import React from 'react';
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import MarkerMaker from './MarkerMaker';
 
 //Rendering the Google Map and the Markers. 
@@ -16,10 +16,6 @@ const MapComponent = withScriptjs(withGoogleMap((props) => {
 			isOpen={restaurant.isOpen}
 		/>
 	)
-
-	var state = {
-		
-	}
 	
 	return(
 		<GoogleMap

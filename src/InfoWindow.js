@@ -7,7 +7,7 @@ class Info extends Component {
 			<div className='info-window'>
 				<h3>{this.props.name}</h3>
 				<p>Address: {this.props.address}</p>
-				<img src={RestaurantIcon} alt="restaurant image"/>
+				<img src={RestaurantIcon} alt={this.props.name}/>
 			</div>
 		);
 	}

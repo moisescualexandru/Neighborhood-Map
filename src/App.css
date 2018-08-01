@@ -81,14 +81,12 @@
 	color: #0000cc;
 }
 
-.restauran-details, .showing {
-    max-height: 0;            
-    overflow-y: hidden;
-    -webkit-transition: max-height 0.5s ease-in-out;
-    -moz-transition: max-height 0.5s ease-in-out;
-    -o-transition: max-height 0.5s ease-in-out;
-    transition: max-height 0.5s ease-in-out;
+.restaurant-details {
+	display: none;
 }
-.showing {            
-    max-height: 100% ;                    
-}    
+
+.showing {
+	-webkit-transition: all .5s ease-in-out;
+	display: block;
+	overflow: hidden;
+}  
