@@ -16,6 +16,10 @@ class FloatingPanel extends Component {
 		})
 	}
 
+	componentDidUpdate() {
+		console.log(this.state.details);
+	}
+
 	getSrc=(id) => {
 		const detail = this.state.details.filter((r) => id === r.id);
 		if (detail.length > 0){
@@ -26,6 +30,45 @@ class FloatingPanel extends Component {
 		} else {
 			return null;
 		}
+	}
+
+	getPrice=(id) => {
+		const detail = this.state.details.filter((r) => id === r.id);
+		if(detail.length > 0) 
+			return detail[0].price.message;
+		else
+			return 'Not categorized yet';
+	}
+
+	getRating=(id) => {
+		const detail = this.state.details.filter((r) => id === r.id)
+		if(detail.length > 0 && detail[0].rating)
+			return detail[0].rating;
+		else
+			return 'This location was not rated yet!';
+	}
+
+	getURL=(id) => {
+		const detail = this.state.details.filter((r) => id === r.id)
+		if(detail.length > 0 && detail[0].url) 
+			return detail[0].url;
+		else
+			return '';
+	}
+
+	getCategory=(id) => {
+		const detail = this.state.details.filter((r) => id === r.id);
+		let cat;
+		if(detail.length > 0 && detail[0].categories){
+			cat = detail[0].categories.map(c => 
+					<span key={c.name}>{c.name}
+						{detail[0].categories.indexOf(c, 0) !== detail[0].categories.length-1 && (
+							<span> | </span>
+						)}
+					</span>
+				);
+		}
+		return cat;
 	}
 
 	render() {
@@ -44,13 +87,18 @@ class FloatingPanel extends Component {
 							<h3>{restaurant.title}</h3>
 							<div className={ !restaurant.isOpen ? 'restaurant-details' : 'showing' }>
 								<img src={this.getSrc(restaurant.id)} alt=""/>
-								<p>Address</p>
-								<p>Opening hours</p>
-								<p>blahblah</p>
-								<div>Reviews
-									<div>blah</div>
-									<div>blah</div>
-								</div>	
+								<p>Restaurant category: {this.getCategory(restaurant.id)}</p>
+								<p>Address: {restaurant.address}</p>
+								<p>Opening hours: </p>
+								<p>Rating: {this.getRating(restaurant.id)}
+									{this.getRating(restaurant.id) !== 'This location was not rated yet!' && (
+										<span> &#x2605;</span>
+									)}
+								</p>
+								<p>Price category $: {this.getPrice(restaurant.id)}</p>
+								{this.getURL(restaurant.id) && (
+									<a href={this.getURL(restaurant.id)} target="_blank">Restaurant's home page</a>
+								)}
 							</div>
 						</li>
 					)}
