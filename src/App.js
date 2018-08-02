@@ -132,7 +132,7 @@ class App extends Component {
           details={this.state.details}
           googleMapURL={`https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing,places&v=3&key=AIzaSyD0STGhDzOr2KtMAf6Qp9cir6yLZuaybbE`}
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `100vh`, width: `100vw` }} id='map'/>}
+          containerElement={<div style={{ height: `100vh`, width: `84vw`}} id='map'/>}
           mapElement={<div style={{ height: `100%` }} />}
           handleToggleOpen={this.handleToggleOpen}
           handleToggleClose={this.handleToggleClose}

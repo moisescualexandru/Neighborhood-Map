@@ -34,26 +34,17 @@ class FloatingPanel extends Component {
 
 	getPrice=(id) => {
 		const detail = this.state.details.filter((r) => id === r.id);
-		if(detail.length > 0) 
-			return detail[0].price.message;
-		else
-			return 'Not categorized yet';
+		detail.length > 0 ? detail[0].price.message : 'Not categorized yet';
 	}
 
 	getRating=(id) => {
 		const detail = this.state.details.filter((r) => id === r.id)
-		if(detail.length > 0 && detail[0].rating)
-			return detail[0].rating;
-		else
-			return 'This location was not rated yet!';
+		detail.length > 0 && detail[0].rating ? detail[0].rating : 'This location was not rated yet!';
 	}
 
 	getURL=(id) => {
 		const detail = this.state.details.filter((r) => id === r.id)
-		if(detail.length > 0 && detail[0].url) 
-			return detail[0].url;
-		else
-			return '';
+		detail.length > 0 && detail[0].url ? detail[0].url : '';
 	}
 
 	getCategory=(id) => {
@@ -85,7 +76,7 @@ class FloatingPanel extends Component {
 						onClick={() => restaurant.isOpen === false ? this.props.handleToggleOpen(restaurant.id) : this.props.handleToggleClose(restaurant.id)}
 						>
 							<h3>{restaurant.title}</h3>
-							<div className={ !restaurant.isOpen ? 'restaurant-details' : 'showing' }>
+							<div className={ !restaurant.isOpen ? 'restaurant-details' : 'restaurant-details showing' }>
 								<img src={this.getSrc(restaurant.id)} alt=""/>
 								<p>Restaurant category: {this.getCategory(restaurant.id)}</p>
 								<p>Address: {restaurant.address}</p>
