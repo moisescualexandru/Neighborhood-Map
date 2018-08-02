@@ -93,3 +93,7 @@
 	display: block;
 	overflow: hidden;
 }  
+
+img {
+	width: 240px;
+}

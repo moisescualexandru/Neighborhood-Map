@@ -9,7 +9,8 @@ class MarkerMaker extends Component {
 			{this.props.isOpen && (
 				<InfoWindow onCloseClick={this.props.onCloseClick}>
 					<Info 	name={this.props.name}
-							address={this.props.address}/>
+							address={this.props.address}
+							id={this.props.id} />
 				</InfoWindow>
 			)}
 			</Marker>

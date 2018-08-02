@@ -9,6 +9,7 @@ const MapComponent = withScriptjs(withGoogleMap((props) => {
 		<MarkerMaker
 			name={restaurant.title}
 			key={restaurant.id}
+			id={restaurant.id}
 			location={restaurant.position}
 			address={restaurant.address}
 			onClick={() => props.handleToggleOpen(restaurant.id)}

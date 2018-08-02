@@ -2,15 +2,45 @@ import React, { Component } from 'react';
 import RestaurantIcon from './icons/menu-placeholder-300x300.jpg';
 
 class Info extends Component {
+	state = {
+		details: []
+	}
+
+	componentDidMount() {
+		var own = this;
+		fetch(`https://api.foursquare.com/v2/venues/${own.props.id}?client_id=10UW0LCTUOEXUWZX3AWVQBRPVP2HPLP0NI2ATHTSHF25CL5L&client_secret=VAEL3BT1BNDACP2V04BNBC3PCWZAXWUJJX4TKGKHQR2CUHU5&v=20180323`)
+			.then(response => response.json())
+			.then(data => this.setState((state) => ({
+				details: state.details.concat([data.response.venue])
+			})))
+			.catch(error => alert('Image could not be loaded. Try again!'))
+	}
+
+	getSrc=() => {
+		if (this.state.details.length > 0){
+			let src = this.state.details[0].bestPhoto.prefix;
+			src += 'width300';
+			src += this.state.details[0].bestPhoto.suffix;
+			return src;
+		} else {
+			return null;
+		}
+	}
+
 	render() {
-		return(
-			<div className='info-window'>
-				<h3>{this.props.name}</h3>
-				<p>Address: {this.props.address}</p>
-				<img src={RestaurantIcon}
-				alt={this.props.name}/>
-			</div>
-		);
+		if(!this.state.details.length)
+			return null;
+		else {
+			return(
+				<div className='info-window'>
+					<h3>{this.props.name}</h3>
+					<p>Address: {this.props.address}</p>
+					<img src={this.getSrc()}
+					alt={this.props.name}/>
+				</div>
+			);	
+		}
+		
 	}
 }
 
