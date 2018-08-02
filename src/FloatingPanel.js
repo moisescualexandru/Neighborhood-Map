@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RestaurantIcon from './icons/restaurang_map_icon_1x.png';
+import RestaurantIcon from './icons/menu-placeholder-300x300.jpg';
 
 class FloatingPanel extends Component {
 	render() {
@@ -16,6 +16,12 @@ class FloatingPanel extends Component {
 							<div className={ !restaurant.isOpen ? 'restaurant-details' : 'showing' }>
 								<p>{restaurant.address}</p>
 								<img src={RestaurantIcon} alt=""/>
+								<p>Opening hours</p>
+								<p>blahblah</p>
+								<div>Reviews
+									<div>blah</div>
+									<div>blah</div>
+								</div>
 							</div>
 						</li>
 					)}

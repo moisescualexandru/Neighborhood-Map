@@ -85,6 +85,7 @@
 
 .restaurant-details {
 	display: none;
+	overflow-y: auto;
 }
 
 .showing {
