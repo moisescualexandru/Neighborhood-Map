@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import RestaurantIcon from './icons/menu-placeholder-300x300.jpg';
 
 class Info extends Component {
 	state = {

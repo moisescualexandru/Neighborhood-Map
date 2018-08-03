@@ -30,8 +30,6 @@ class App extends Component {
       }
     ],
 
-    details: [],
-
     query: ''
   }
 
@@ -103,7 +101,7 @@ class App extends Component {
 //Rendering the app
   render() {
 
-    //updating the view with based on the value introduced in search box
+    //updating the view  based on the value introduced in search box
     let showingRestaurants;
     if(this.state.query) {
       const match = new RegExp(escapeRegExp(this.state.query), 'i');

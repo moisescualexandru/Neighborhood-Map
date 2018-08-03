@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Icon from './icons/menu-placeholder-300x300.jpg';
 
 class FloatingPanel extends Component {
 	state ={
@@ -34,17 +35,26 @@ class FloatingPanel extends Component {
 
 	getPrice=(id) => {
 		const detail = this.state.details.filter((r) => id === r.id);
-		detail.length > 0 ? detail[0].price.message : 'Not categorized yet';
+		if(detail.length > 0 && detail[0].price)
+		 	return detail[0].price.message;
+		else
+			return'Not categorized yet';
 	}
 
 	getRating=(id) => {
 		const detail = this.state.details.filter((r) => id === r.id)
-		detail.length > 0 && detail[0].rating ? detail[0].rating : 'This location was not rated yet!';
+		if(detail.length > 0 && detail[0].rating)
+			return detail[0].rating; 
+		else
+			return 'This location was not rated yet!';
 	}
 
 	getURL=(id) => {
 		const detail = this.state.details.filter((r) => id === r.id)
-		detail.length > 0 && detail[0].url ? detail[0].url : '';
+		if(detail.length > 0 && detail[0].url) 
+			return detail[0].url;
+		else
+			return '';
 	}
 
 	getCategory=(id) => {
@@ -52,11 +62,7 @@ class FloatingPanel extends Component {
 		let cat;
 		if(detail.length > 0 && detail[0].categories){
 			cat = detail[0].categories.map(c => 
-					<span key={c.name}>{c.name}
-						{detail[0].categories.indexOf(c, 0) !== detail[0].categories.length-1 && (
-							<span> | </span>
-						)}
-					</span>
+					<p key={c.name}>{c.name}</p>
 				);
 		}
 		return cat;
@@ -76,17 +82,31 @@ class FloatingPanel extends Component {
 						onClick={() => restaurant.isOpen === false ? this.props.handleToggleOpen(restaurant.id) : this.props.handleToggleClose(restaurant.id)}
 						>
 							<h3>{restaurant.title}</h3>
-							<div className={ !restaurant.isOpen ? 'restaurant-details' : 'restaurant-details showing' }>
+							<div className={ !restaurant.isOpen ? 'restaurant-details' : 'showing' }>
 								<img src={this.getSrc(restaurant.id)} alt=""/>
-								<p>Restaurant category: {this.getCategory(restaurant.id)}</p>
-								<p>Address: {restaurant.address}</p>
-								<p>Opening hours: </p>
-								<p>Rating: {this.getRating(restaurant.id)}
-									{this.getRating(restaurant.id) !== 'This location was not rated yet!' && (
-										<span> &#x2605;</span>
-									)}
-								</p>
-								<p>Price category $: {this.getPrice(restaurant.id)}</p>
+								<div className='category-item'>
+									<h3>Restaurant category</h3>
+									<p>{this.getCategory(restaurant.id)}</p>
+								</div>
+								<div className='category-item'>
+									<h3>Address</h3>
+									<p>{restaurant.address}</p>
+								</div>
+								<div className='category-item'>
+									<h3>Opening hours</h3>
+									<p></p>
+								</div>
+								<div className='category-item'>
+									<h3>Rating</h3>
+									<p>{this.getRating(restaurant.id)}
+										{this.getRating(restaurant.id) !== 'This location was not rated yet!' && (
+										<span> &#x2605;</span>)}
+									</p>
+								</div>
+								<div className='category-item'>
+									<h3>Price category $</h3>
+									<p>{this.getPrice(restaurant.id)}</p>
+								</div>
 								{this.getURL(restaurant.id) && (
 									<a href={this.getURL(restaurant.id)} target="_blank">Restaurant's home page</a>
 								)}

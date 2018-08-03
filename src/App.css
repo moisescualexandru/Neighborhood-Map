@@ -18,7 +18,7 @@
 /*Floating panel*/
 
 .floating-panel {
-	background-color: #1E90FF;
+	background-color: white;
     border-radius: 3px;
     height: 100vh;
     line-height: 35px;
@@ -65,18 +65,20 @@
 	margin: 0;
 	padding-left: 5px;
 	text-align: center;
-	-webkit-transition: all 0.5s ease-in-out;
 }
 
 .item-list {
 	margin: 0;
-	border-bottom: 5px solid #999;
 	list-style: none;
 	text-align: left;
 	background-color: #fff;
 	margin-bottom: 20px;
 	padding: 5px;
 	max-height: 50px;
+	-webkit-transition: all .3s ease-in-out;
+	-webkit-box-shadow: 4px 4px 5px 4px grey;
+	-moz-box-shadow: 4px 4px 5px 4px grey;
+	box-shadow: 4px 4px 5px 4px grey;
 }
 
 .item-list:hover {
@@ -86,23 +88,39 @@
 }
 
 .selected {
-	padding-left: 15px;
+/*	padding-left: 15px;*/
 	color: #0000cc;
 	max-height: 100%;
+	text-align: center;
+}
+
+.selected:hover {
+	padding-left: 5px;
 }
 
 .restaurant-details {
+	max-height: 0;
 	display: none;
 	overflow-y: auto;
-
 }
 
 .showing {
-	-webkit-transition: all .5s ease-in-out;
 	max-height: 100%;
 	display: block;
 	overflow: hidden;
 }  
+
+.category-item {
+	text-align: center;
+	color: black;
+	border-top: 2px solid grey;
+}
+
+a {
+	color: blue;
+	text-align: center;
+	cursor: default;
+}
 
 img {
 	width: 240px;
