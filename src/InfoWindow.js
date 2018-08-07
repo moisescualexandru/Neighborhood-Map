@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Icon from './icons/menu-placeholder-300x300.jpg'
 
 class Info extends Component {
 	state = {
@@ -12,17 +13,16 @@ class Info extends Component {
 			.then(data => this.setState((state) => ({
 				details: state.details.concat([data.response.venue])
 			})))
-			.catch(error => alert('Image could not be loaded. Try again!'))
 	}
 
 	getSrc=() => {
-		if (this.state.details.length > 0){
+		if (this.state.details[0]){
 			let src = this.state.details[0].bestPhoto.prefix;
 			src += 'width300';
 			src += this.state.details[0].bestPhoto.suffix;
 			return src;
 		} else {
-			return null;
+			return Icon; 
 		}
 	}
 
@@ -36,6 +36,7 @@ class Info extends Component {
 					<p>Address: {this.props.address}</p>
 					<img src={this.getSrc()}
 					alt={this.props.name}/>
+					<p>For more details see the menu bar!</p>
 				</div>
 			);	
 		}

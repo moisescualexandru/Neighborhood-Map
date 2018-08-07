@@ -1,6 +1,7 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
 import MarkerMaker from './MarkerMaker';
+import Media from 'react-media';
 
 //Rendering the Google Map and the Markers. 
 //The Render function was written with help from react-google-maps git-hub documentation
@@ -19,12 +20,23 @@ const MapComponent = withScriptjs(withGoogleMap((props) => {
 	)
 	
 	return(
-		<GoogleMap
-			zoom={props.currentPosition[0].zoom}
-			center={props.currentPosition[0].currentPosition}
-		>
-		{markers}
-		</GoogleMap>
+		<Media query='(max-width: 768px)'>
+		{matches => matches ? (
+			<GoogleMap
+				zoom={13}
+				center={props.currentPosition[0].currentPosition}
+			>
+			{markers}
+			</GoogleMap>
+		) : (
+			<GoogleMap
+				zoom={props.currentPosition[0].zoom}
+				center={props.currentPosition[0].currentPosition}
+			>
+			{markers}
+			</GoogleMap>
+		)}
+		</Media>
 	);
 }))
 

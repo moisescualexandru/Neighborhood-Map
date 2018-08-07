@@ -4,6 +4,7 @@ import MapComponent from './Map.js';
 import FloatingPanel from './FloatingPanel.js';
 import SearchBox from './SearchBox.js';
 import escapeRegExp from 'escape-string-regexp';
+import Media from 'react-media';
 
 class App extends Component {
 
@@ -11,26 +12,28 @@ class App extends Component {
     locations:[
       {id: '57967c29498ecfecfe4018a8', title: "Vu's Rooftop Restaurant", position: {lat: 44.425543, lng: 26.106787}, address: 'Splaiul Unirii, nr. 6, bloc B3A, etaj 8, Bucuresti', isOpen: false},
       {id: '4b82a348f964a520e0db30e3', title: 'Restaurant Beijing', position: {lat: 44.427528, lng: 26.124222}, address: 'Str. Verdetei, 11, Bucuresti', isOpen: false},
-      // {id: '4daf16a4fc6063dbfa86915f', title: 'Restaurant Thang Long', position: {lat: 44.421457, lng: 26.107528}, address: 'Strada Bucur 11, Bucuresti', isOpen: false},
-      // {id: '58b2dc009435a903b9762e96', title: 'Sardin', position: {lat: 44.42002, lng: 26.112973}, address: 'Bulevardul Mircea Voda 39H, Bucuresti', isOpen: false},
-      // {id: '4f044c31f79000b5dd2382a5', title: 'Trattoria Pane e Vino', position: {lat: 44.419777, lng: 26.115798}, address: 'Strada Nerva Traian, Bucuresti', isOpen: false},
-      // {id: '4cc1bff8914137048b44af55', title: 'Thalia Restaurant', position: {lat: 44.416313, lng: 26.106931}, address: 'Strada Cuza Voda 147, Bucuresti', isOpen: false},
-      // {id: '4e0b6eb318388f71c35f63a9', title: 'Restaurant Casa Brandusa', position: {lat: 44.416288, lng: 26.124088}, address: 'Strada Branduselor 56, Bucuresti', isOpen: false},
-      // {id: '4c2646a4db5195213c5e2c3a', title: 'At Calinescu Tavern', position: {lat: 44.410494, lng: 26.112488}, address: 'Strada Piscului 16, Bucuresti', isOpen: false},
-      // {id: '56ab9d7b498eddf7b7021101', title: 'Bohemia', position: {lat: 44.408599, lng: 26.118087}, address: 'Bulevardul Tineretului 55, Bucuresti', isOpen: false},
-      // {id: '4e15ebbaae60a0ac0637373b', title: 'Casa Oprescu', position: {lat: 44.406775, lng: 26.112055}, address: 'Strada Secerei, Bucuresti', isOpen: false},
-      // {id: '56439b3b498ed6a787d7e5f5', title: 'Trattoria Rossini', position: {lat: 44.404736, lng: 26.111589}, address: 'Calea Piscului 10, Bucuresti', isOpen: false},
-      // {id: '4b62c590f964a52009522ae3', title: 'Il Cantuccio', position: {lat: 44.416765, lng: 26.093083}, address: 'Strada Fabrica de Chibrituri 2, Bucuresti', isOpen: false}
+      {id: '4daf16a4fc6063dbfa86915f', title: 'Restaurant Thang Long', position: {lat: 44.421457, lng: 26.107528}, address: 'Strada Bucur 11, Bucuresti', isOpen: false},
+      {id: '58b2dc009435a903b9762e96', title: 'Sardin', position: {lat: 44.42002, lng: 26.112973}, address: 'Bulevardul Mircea Voda 39H, Bucuresti', isOpen: false},
+      {id: '4f044c31f79000b5dd2382a5', title: 'Trattoria Pane e Vino', position: {lat: 44.419777, lng: 26.115798}, address: 'Strada Nerva Traian, Bucuresti', isOpen: false},
+      {id: '4cc1bff8914137048b44af55', title: 'Thalia Restaurant', position: {lat: 44.416313, lng: 26.106931}, address: 'Strada Cuza Voda 147, Bucuresti', isOpen: false},
+      {id: '4e0b6eb318388f71c35f63a9', title: 'Restaurant Casa Brandusa', position: {lat: 44.416288, lng: 26.124088}, address: 'Strada Branduselor 56, Bucuresti', isOpen: false},
+      {id: '4c2646a4db5195213c5e2c3a', title: 'At Calinescu Tavern', position: {lat: 44.410494, lng: 26.112488}, address: 'Strada Piscului 16, Bucuresti', isOpen: false},
+      {id: '56ab9d7b498eddf7b7021101', title: 'Bohemia', position: {lat: 44.408599, lng: 26.118087}, address: 'Bulevardul Tineretului 55, Bucuresti', isOpen: false},
+      {id: '4e15ebbaae60a0ac0637373b', title: 'Casa Oprescu', position: {lat: 44.406775, lng: 26.112055}, address: 'Strada Secerei, Bucuresti', isOpen: false},
+      {id: '56439b3b498ed6a787d7e5f5', title: 'Trattoria Rossini', position: {lat: 44.404736, lng: 26.111589}, address: 'Calea Piscului 10, Bucuresti', isOpen: false},
+      {id: '4b62c590f964a52009522ae3', title: 'Il Cantuccio', position: {lat: 44.416765, lng: 26.093083}, address: 'Strada Fabrica de Chibrituri 2, Bucuresti', isOpen: false}
     ],
 
     defaultPosition: [
       {
         currentPosition: { lat: 44.418091, lng: 26.123015 },
-        zoom: 15
+        zoom: 14
       }
     ],
 
-    query: ''
+    query: '',
+
+    visible: false
   }
 
 //Handle the event when a marker or list item is clicked
@@ -47,7 +50,6 @@ class App extends Component {
             return l;
       })
     }))
-    item.scrollIntoView();
     this.zoomToArea(id);
   }
 
@@ -98,6 +100,18 @@ class App extends Component {
     this.setState({ query: '' });
   }
 
+  openMenu=() => {
+    this.setState({ visible: true });
+    document.getElementById('floating-panel').style.display='block';
+    document.getElementById('menu').style.display='none';
+  }
+
+  closeMenu=() => {
+    this.setState({ visible: false });
+    document.getElementById('floating-panel').style.display='none';
+    document.getElementById('menu').style.display='block';
+  }
+
 //Rendering the app
   render() {
 
@@ -113,24 +127,45 @@ class App extends Component {
     //rendering the view
     return (
       <div className='app'>
-        <div className='floating-panel'>
-          <SearchBox 
-            updateQuery={this.updateQuery} 
-            clearQuery={this.clearQuery}
-            query={this.state.query}
-          />
-            <FloatingPanel 
-            restaurants={showingRestaurants}
-            handleToggleOpen={this.handleToggleOpen}
-            handleToggleClose={this.handleToggleClose}
+        <Media query='(max-width: 768px)'>
+          {matches => matches ? (
+            <div>
+              <button id='menu' onClick={this.openMenu}/>
+              <div id='floating-panel'>
+                <button id='close-menu' onClick={this.closeMenu}/>
+                <SearchBox 
+                  updateQuery={this.updateQuery} 
+                  clearQuery={this.clearQuery}
+                  query={this.state.query}
+                />
+                <FloatingPanel 
+                  restaurants={showingRestaurants}
+                  handleToggleOpen={this.handleToggleOpen}
+                  handleToggleClose={this.handleToggleClose}
+                />
+            </div>
+          </div>  
+            ) : (
+          <div id='floating-panel'>
+            <SearchBox 
+              updateQuery={this.updateQuery} 
+              clearQuery={this.clearQuery}
+              query={this.state.query}
             />
-        </div>
+            <FloatingPanel 
+              restaurants={showingRestaurants}
+              handleToggleOpen={this.handleToggleOpen}
+              handleToggleClose={this.handleToggleClose}
+            />
+          </div>)}
+        </Media>
+
         <MapComponent 
           locations={showingRestaurants}
           details={this.state.details}
           googleMapURL={`https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing,places&v=3&key=AIzaSyD0STGhDzOr2KtMAf6Qp9cir6yLZuaybbE`}
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `100%`, width: `83%`}} id='map'/>}
+          containerElement={<div style={{ height: `100vh`}}id='map'/>}
           mapElement={<div style={{ height: `100%` }} />}
           handleToggleOpen={this.handleToggleOpen}
           handleToggleClose={this.handleToggleClose}

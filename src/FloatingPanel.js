@@ -13,65 +13,69 @@ class FloatingPanel extends Component {
 			.then(data => this.setState((state) => ({
 				details: state.details.concat([ data.response.venue])
 			})))
-			.catch(error => alert('Image could not be loaded. Try again!'))
 		})
 	}
 
-	componentDidUpdate() {
-		console.log(this.state.details);
-	}
-
 	getSrc=(id) => {
-		const detail = this.state.details.filter((r) => id === r.id);
-		if (detail.length > 0){
-			let src = detail[0].bestPhoto.prefix;
-			src += 'width300';
-			src += detail[0].bestPhoto.suffix;
-			return src;
+		if (this.state.details[0]) {
+			const detail = this.state.details.filter((r) => id === r.id);
+			if (detail.length > 0){
+				let src = detail[0].bestPhoto.prefix;
+				src += 'width300';
+				src += detail[0].bestPhoto.suffix;
+				return src;
+			} 	
 		} else {
-			return null;
+				return Icon;
 		}
+		
 	}
 
 	getPrice=(id) => {
-		const detail = this.state.details.filter((r) => id === r.id);
-		if(detail.length > 0 && detail[0].price)
-		 	return detail[0].price.message;
-		else
-			return'Not categorized yet';
+		if (this.state.details[0]) {
+			const detail = this.state.details.filter((r) => id === r.id);
+			if(detail.length > 0 && detail[0].price)
+		 		return detail[0].price.message;	
+		} else
+			return 'Not categorized yet';
 	}
 
 	getRating=(id) => {
-		const detail = this.state.details.filter((r) => id === r.id)
-		if(detail.length > 0 && detail[0].rating)
-			return detail[0].rating; 
-		else
+		if (this.state.details[0]) {
+			const detail = this.state.details.filter((r) => id === r.id)
+			if(detail.length > 0 && detail[0].rating)
+				return detail[0].rating; 	
+		} else
 			return 'This location was not rated yet!';
 	}
 
 	getURL=(id) => {
-		const detail = this.state.details.filter((r) => id === r.id)
-		if(detail.length > 0 && detail[0].url) 
-			return detail[0].url;
-		else
+		if (this.state.details[0]) {
+			const detail = this.state.details.filter((r) => id === r.id)
+			if(detail.length > 0 && detail[0].url) 
+				return detail[0].url;	
+		} else
 			return '';
 	}
 
 	getCategory=(id) => {
-		const detail = this.state.details.filter((r) => id === r.id);
-		let cat;
-		if(detail.length > 0 && detail[0].categories){
-			cat = detail[0].categories.map(c => 
-					<p key={c.name}>{c.name}</p>
-				);
-		}
-		return cat;
+		if (this.state.details[0]) {
+			const detail = this.state.details.filter((r) => id === r.id);
+			let cat;
+			if(detail.length > 0 && detail[0].categories){
+				cat = detail[0].categories.map(c => 
+						<p key={c.name}>{c.name}</p>
+					);
+			}
+			return cat;
+		} else 
+			return 'Information not available';
 	}
 
 	render() {
 		if (!this.state.details.length)
 			return null;
-		else{
+		else {
 		return(
 			<div className='restaurant-list'>
 				<ul className='restaurant-list'>
@@ -81,7 +85,7 @@ class FloatingPanel extends Component {
 						key={restaurant.id}
 						onClick={(event) => restaurant.isOpen === false ? this.props.handleToggleOpen(restaurant.id, event.target) : this.props.handleToggleClose(restaurant.id)}
 						>
-							<h3>{restaurant.title}</h3>
+							<h3 className='restaurant-title'>{restaurant.title}</h3>
 							<div className={ !restaurant.isOpen ? 'restaurant-details' : 'showing' }>
 								<img src={this.getSrc(restaurant.id)} alt=""/>
 								<div className='category-item'>

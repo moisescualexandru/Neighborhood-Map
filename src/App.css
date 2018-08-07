@@ -14,11 +14,13 @@
 
 #map {
 	margin: 0;
+/*	height: 100vh;*/
+	width: 83%;
 }
 
 /*Floating panel*/
 
-.floating-panel {
+#floating-panel {
 	background-color: beige;
     border-radius: 3px;
     height: 100vh;
@@ -35,7 +37,7 @@
 
 /*Search box*/
 .search-box {
-	height: 50px;
+	height: 60px;
 	width: 100%;
 	padding: 10px;
 	border-bottom: 1px solid #999;
@@ -51,7 +53,7 @@
 
 .search-button {
 	height: 35px;
-	width: 25%;
+	width: 27%;
 	cursor: pointer;
 	border-radius: 3px;
 }
@@ -72,7 +74,7 @@
 	margin-top: 5px;
 	list-style: none;
 	text-align: left;
-	background-color: #fff;
+	background-color: khaki;
 	margin-bottom: 20px;
 	/*padding: 3px;*/
 	height: 100%;
@@ -82,19 +84,24 @@
 	box-shadow: 4px 4px 5px 4px grey;
 	border-radius: 2px;
 	width: 100%;
+	color: #703810;
 }
 
 .item-list:hover {
 	text-align: center;
 	cursor: pointer;
-	color: #0000cc;
+	color: #703810;
 }
 
 .selected {
 /*	padding-left: 15px;*/
-	color: #0000cc;
+	color: #703810;
 	height: 100%;
 	text-align: center;
+}
+
+.restaurant-title {
+	font-size: 1em;
 }
 
 .restaurant-details {
@@ -113,7 +120,7 @@
 
 .category-item {
 	text-align: center;
-	color: black;
+	color: #a97c0a;
 	border-top: 2px solid grey;
 	padding: 0;
 	width: 100%;
@@ -133,4 +140,127 @@ img {
 	max-width: 90%;
 	max-height: 240px;
 	border-radius: 2px;
+}
+
+.info-window {
+	text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+	.search-box {
+		display: block;
+	}
+
+	.text-search {
+		width: 60%;
+	}
+
+	.search-button {
+		width: 30%;
+	}
+}
+
+@media screen and (max-width: 1120px) {
+	.search-box {
+		display: block;
+		height: 80px;
+	}
+
+	.text-search {
+		width: 100%;
+	}
+
+	.search-button {
+		width: 50px;
+		float: right;
+	}
+
+	#map{
+		width: 77%;
+	}
+
+	#floating-panel{
+		width: 20%;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	#map{
+		width: 72%;
+	}
+
+	#floating-panel{
+		width: 25%;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#floating-panel{
+		display: none;
+		position: absolute;
+		width: 50%;
+		-webkit-transition: all .3s ease-in-out;
+		z-index: 1;		
+		opacity: 0.95;
+	}
+
+	#map {
+		width: 100%;
+	}
+
+	#menu {
+		background-size: contain;
+		z-index: 1;
+		position: absolute;
+		background-color: beige;
+		height: 60px;
+		width: 60px;
+		background-image: url('./icons/menu.png');
+	}
+
+	.search-box {
+		margin: 0;
+		height: 50px;
+		display: inline-flex;
+	}
+
+	#close-menu {
+		background-size: contain;
+		background-color: beige;
+		height: 50px;
+		width: 50px;
+		background-image: url('./icons/menu.png');
+		float: left;
+	}
+
+	img {
+		max-height: 150px;
+		margin: auto;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	#menu {
+		height: 50px;
+		width: 50px;
+	}
+	
+	#floating-panel {
+		width: 60%;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	#menu {
+		text-align: right;
+	}
+
+	.info-window {
+		max-height: 210px;
+		max-width: 180px;
+	}
+
+	#floating-panel {
+		width: 95%;
+	}
 }
