@@ -15,6 +15,7 @@ class Info extends Component {
 			})))
 	}
 
+	//getting the image source from Foursquare
 	getSrc=() => {
 		if (this.state.details[0]){
 			let src = this.state.details[0].bestPhoto.prefix;

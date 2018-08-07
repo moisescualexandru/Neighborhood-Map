@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Icon from './icons/menu-placeholder-300x300.jpg';
+import Foursquare from './icons/powered-by-foursquare-grey.png';
 
 class FloatingPanel extends Component {
 	state ={
@@ -20,6 +21,7 @@ class FloatingPanel extends Component {
 		document.getElementById('focus').focus();
 	}
 
+	//geting the image source from Foursquare
 	getSrc=(id) => {
 		if (this.state.details[0]) {
 			const detail = this.state.details.filter((r) => id === r.id);
@@ -35,6 +37,7 @@ class FloatingPanel extends Component {
 		
 	}
 
+	//getting the price category from Foursquare
 	getPrice=(id) => {
 		if (this.state.details[0]) {
 			const detail = this.state.details.filter((r) => id === r.id);
@@ -44,6 +47,7 @@ class FloatingPanel extends Component {
 			return 'Not categorized yet';
 	}
 
+	//getting the rating information from Foursquare
 	getRating=(id) => {
 		if (this.state.details[0]) {
 			const detail = this.state.details.filter((r) => id === r.id)
@@ -53,6 +57,7 @@ class FloatingPanel extends Component {
 			return 'This location was not rated yet!';
 	}
 
+	//getting the restaurant's homepage url from Foursquare
 	getURL=(id) => {
 		if (this.state.details[0]) {
 			const detail = this.state.details.filter((r) => id === r.id)
@@ -62,6 +67,7 @@ class FloatingPanel extends Component {
 			return '';
 	}
 
+	//getting the cuisine from Foursquare
 	getCategory=(id) => {
 		if (this.state.details[0]) {
 			const detail = this.state.details.filter((r) => id === r.id);
@@ -116,7 +122,7 @@ class FloatingPanel extends Component {
 						>
 							<h2 className='restaurant-title'>{restaurant.title}</h2>
 							<div className={ !restaurant.isOpen ? 'restaurant-details' : 'showing' } role='alert'>
-								<img src={this.getSrc(restaurant.id)} alt='restaurant image'/>
+								<img src={this.getSrc(restaurant.id)} alt='restaurant overview'/>
 								<div className='category-item' >
 									<h3>Restaurant category</h3>
 									{this.getCategory(restaurant.id)}
@@ -127,14 +133,19 @@ class FloatingPanel extends Component {
 								</div>
 								<div className='category-item'>
 									<h3>Opening hours</h3>
-									<tr>
-										<td></td>
-										<td></td>
-									</tr>
-									<tr>
-										<td></td>
-										<td></td>
-									</tr>
+									<table>
+										<tbody>
+											<tr>
+												<td>Weekdays: </td>
+												<td>{restaurant.openHours.weekdays}</td>
+											</tr>
+											<tr>
+												<td>Weekends: </td>
+												<td>{restaurant.openHours.weekends}</td>
+											</tr>		
+										</tbody>
+										
+									</table>
 								</div>
 								<div className='category-item'>
 									<h3>Rating</h3>
@@ -150,6 +161,7 @@ class FloatingPanel extends Component {
 								{this.getURL(restaurant.id) && (
 									<a href={this.getURL(restaurant.id)} target="_blank">Restaurant's home page</a>
 								)}
+								<img height='10px' src={Foursquare} alt="powered by foursquare"/>
 							</div>
 						</li>
 					)}
