@@ -79,14 +79,14 @@ class FloatingPanel extends Component {
 						<li 
 						className={restaurant.isOpen === false ? 'item-list' : 'item-list selected'} 
 						key={restaurant.id}
-						onClick={() => restaurant.isOpen === false ? this.props.handleToggleOpen(restaurant.id) : this.props.handleToggleClose(restaurant.id)}
+						onClick={(event) => restaurant.isOpen === false ? this.props.handleToggleOpen(restaurant.id, event.target) : this.props.handleToggleClose(restaurant.id)}
 						>
 							<h3>{restaurant.title}</h3>
 							<div className={ !restaurant.isOpen ? 'restaurant-details' : 'showing' }>
 								<img src={this.getSrc(restaurant.id)} alt=""/>
 								<div className='category-item'>
 									<h3>Restaurant category</h3>
-									<p>{this.getCategory(restaurant.id)}</p>
+									{this.getCategory(restaurant.id)}
 								</div>
 								<div className='category-item'>
 									<h3>Address</h3>

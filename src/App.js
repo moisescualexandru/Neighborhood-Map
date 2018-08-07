@@ -10,7 +10,7 @@ class App extends Component {
   state = {
     locations:[
       {id: '57967c29498ecfecfe4018a8', title: "Vu's Rooftop Restaurant", position: {lat: 44.425543, lng: 26.106787}, address: 'Splaiul Unirii, nr. 6, bloc B3A, etaj 8, Bucuresti', isOpen: false},
-      // {id: '4b82a348f964a520e0db30e3', title: 'Restaurant Beijing', position: {lat: 44.427528, lng: 26.124222}, address: 'Str. Verdetei, 11, Bucuresti', isOpen: false},
+      {id: '4b82a348f964a520e0db30e3', title: 'Restaurant Beijing', position: {lat: 44.427528, lng: 26.124222}, address: 'Str. Verdetei, 11, Bucuresti', isOpen: false},
       // {id: '4daf16a4fc6063dbfa86915f', title: 'Restaurant Thang Long', position: {lat: 44.421457, lng: 26.107528}, address: 'Strada Bucur 11, Bucuresti', isOpen: false},
       // {id: '58b2dc009435a903b9762e96', title: 'Sardin', position: {lat: 44.42002, lng: 26.112973}, address: 'Bulevardul Mircea Voda 39H, Bucuresti', isOpen: false},
       // {id: '4f044c31f79000b5dd2382a5', title: 'Trattoria Pane e Vino', position: {lat: 44.419777, lng: 26.115798}, address: 'Strada Nerva Traian, Bucuresti', isOpen: false},
@@ -20,7 +20,7 @@ class App extends Component {
       // {id: '56ab9d7b498eddf7b7021101', title: 'Bohemia', position: {lat: 44.408599, lng: 26.118087}, address: 'Bulevardul Tineretului 55, Bucuresti', isOpen: false},
       // {id: '4e15ebbaae60a0ac0637373b', title: 'Casa Oprescu', position: {lat: 44.406775, lng: 26.112055}, address: 'Strada Secerei, Bucuresti', isOpen: false},
       // {id: '56439b3b498ed6a787d7e5f5', title: 'Trattoria Rossini', position: {lat: 44.404736, lng: 26.111589}, address: 'Calea Piscului 10, Bucuresti', isOpen: false},
-      {id: '4b62c590f964a52009522ae3', title: 'Il Cantuccio', position: {lat: 44.416765, lng: 26.093083}, address: 'Strada Fabrica de Chibrituri 2, Bucuresti', isOpen: false}
+      // {id: '4b62c590f964a52009522ae3', title: 'Il Cantuccio', position: {lat: 44.416765, lng: 26.093083}, address: 'Strada Fabrica de Chibrituri 2, Bucuresti', isOpen: false}
     ],
 
     defaultPosition: [
@@ -34,7 +34,7 @@ class App extends Component {
   }
 
 //Handle the event when a marker or list item is clicked
-  handleToggleOpen = (id) => {
+  handleToggleOpen = (id, item) => {
     this.setState((state) => ({
       locations: state.locations.map((l) => {
         if(l.id === id && !l.isOpen){
@@ -47,7 +47,7 @@ class App extends Component {
             return l;
       })
     }))
-
+    item.scrollIntoView();
     this.zoomToArea(id);
   }
 
@@ -62,7 +62,7 @@ class App extends Component {
           return l;
       })
     }))
-
+    
     this.zoomOut();
   }
 
@@ -130,7 +130,7 @@ class App extends Component {
           details={this.state.details}
           googleMapURL={`https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing,places&v=3&key=AIzaSyD0STGhDzOr2KtMAf6Qp9cir6yLZuaybbE`}
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `100vh`, width: `84vw`}} id='map'/>}
+          containerElement={<div style={{ height: `100%`, width: `83%`}} id='map'/>}
           mapElement={<div style={{ height: `100%` }} />}
           handleToggleOpen={this.handleToggleOpen}
           handleToggleClose={this.handleToggleClose}
