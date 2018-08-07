@@ -16,6 +16,10 @@ class FloatingPanel extends Component {
 		})
 	}
 
+	componetDidUpdate() {
+		document.getElementById('focus').focus();
+	}
+
 	getSrc=(id) => {
 		if (this.state.details[0]) {
 			const detail = this.state.details.filter((r) => id === r.id);
@@ -64,7 +68,7 @@ class FloatingPanel extends Component {
 			let cat;
 			if(detail.length > 0 && detail[0].categories){
 				cat = detail[0].categories.map(c => 
-						<p key={c.name} tabIndex=4>{c.name}</p>
+						<p key={c.name}>{c.name}</p>
 					);
 			}
 			return cat;
@@ -72,45 +76,76 @@ class FloatingPanel extends Component {
 			return 'Information not available';
 	}
 
+	//handling the key press events		
+	handleKeyDown=(id, event, isOpen) => {
+		switch(true) {
+				case (event.key === 'Enter' && isOpen === false):
+						this.props.handleToggleOpen(id, event.target);
+						break;
+				case (event.key === 'Enter' && isOpen === true):
+						event.preventDefault();
+						break;
+				case (event.key === 'Tab' && isOpen === true):
+						event.preventDefault();
+						break;
+				case (event.key === 'Escape' && isOpen === false):
+						event.preventDefault();
+						break;
+				case (event.key === 'Escape' && isOpen === true):
+						this.props.handleToggleClose(id, event.target);
+						break;
+				default:
+						break;
+		}
+	}
+		
 	render() {
 		if (!this.state.details.length)
 			return null;
 		else {
 		return(
 			<div className='restaurant-list'>
-				<ul className='restaurant-list' tabIndex=1 aria-label='restaurant list'>
+				<ul id='focus' className='restaurant-list' tabIndex='3' aria-label='restaurant list'>
 					{this.props.restaurants.map( restaurant => 
 						<li 
 						className={restaurant.isOpen === false ? 'item-list' : 'item-list selected'} 
 						key={restaurant.id}
 						onClick={(event) => restaurant.isOpen === false ? this.props.handleToggleOpen(restaurant.id, event.target) : this.props.handleToggleClose(restaurant.id)}
-						aria-label={restaurant.title}
+						onKeyDown={(event) => this.handleKeyDown(restaurant.id, event, restaurant.isOpen)}
+						tabIndex='5'
 						>
 							<h2 className='restaurant-title'>{restaurant.title}</h2>
-							<div tabIndex=2 className={ !restaurant.isOpen ? 'restaurant-details' : 'showing' } aria-label='restaurant details'>
+							<div className={ !restaurant.isOpen ? 'restaurant-details' : 'showing' } role='alert'>
 								<img src={this.getSrc(restaurant.id)} alt='restaurant image'/>
-								<div className='category-item' aria-label='restaurant categories' tabIndex=3>
+								<div className='category-item' >
 									<h3>Restaurant category</h3>
 									{this.getCategory(restaurant.id)}
 								</div>
-								<div className='category-item' tabIndex=3 aria-label='restaurant address'>
+								<div className='category-item' >
 									<h3>Address</h3>
-									<p tabIndex=4>{restaurant.address}</p>
+									<p>{restaurant.address}</p>
 								</div>
-								<div className='category-item' aria-label='opening hours' tabIndex=3>
+								<div className='category-item'>
 									<h3>Opening hours</h3>
-									<p tabIndex=4></p>
+									<tr>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td></td>
+									</tr>
 								</div>
-								<div className='category-item' tabIndex=3 aria-label='rating'>
+								<div className='category-item'>
 									<h3>Rating</h3>
-									<p tabIndex=4>{this.getRating(restaurant.id)}
+									<p>{this.getRating(restaurant.id)}
 										{this.getRating(restaurant.id) !== 'This location was not rated yet!' && (
 										<span> &#x2605;</span>)}
 									</p>
 								</div>
-								<div className='category-item' aria-label='price category' tabIndex=3>
+								<div className='category-item'>
 									<h3>Price category $</h3>
-									<p tabIndex=4>{this.getPrice(restaurant.id)}</p>
+									<p>{this.getPrice(restaurant.id)}</p>
 								</div>
 								{this.getURL(restaurant.id) && (
 									<a href={this.getURL(restaurant.id)} target="_blank">Restaurant's home page</a>
