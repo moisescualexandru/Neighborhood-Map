@@ -64,7 +64,7 @@ class FloatingPanel extends Component {
 			let cat;
 			if(detail.length > 0 && detail[0].categories){
 				cat = detail[0].categories.map(c => 
-						<p key={c.name}>{c.name}</p>
+						<p key={c.name} tabIndex=4>{c.name}</p>
 					);
 			}
 			return cat;
@@ -78,38 +78,39 @@ class FloatingPanel extends Component {
 		else {
 		return(
 			<div className='restaurant-list'>
-				<ul className='restaurant-list'>
+				<ul className='restaurant-list' tabIndex=1 aria-label='restaurant list'>
 					{this.props.restaurants.map( restaurant => 
 						<li 
 						className={restaurant.isOpen === false ? 'item-list' : 'item-list selected'} 
 						key={restaurant.id}
 						onClick={(event) => restaurant.isOpen === false ? this.props.handleToggleOpen(restaurant.id, event.target) : this.props.handleToggleClose(restaurant.id)}
+						aria-label={restaurant.title}
 						>
-							<h3 className='restaurant-title'>{restaurant.title}</h3>
-							<div className={ !restaurant.isOpen ? 'restaurant-details' : 'showing' }>
-								<img src={this.getSrc(restaurant.id)} alt=""/>
-								<div className='category-item'>
+							<h2 className='restaurant-title'>{restaurant.title}</h2>
+							<div tabIndex=2 className={ !restaurant.isOpen ? 'restaurant-details' : 'showing' } aria-label='restaurant details'>
+								<img src={this.getSrc(restaurant.id)} alt='restaurant image'/>
+								<div className='category-item' aria-label='restaurant categories' tabIndex=3>
 									<h3>Restaurant category</h3>
 									{this.getCategory(restaurant.id)}
 								</div>
-								<div className='category-item'>
+								<div className='category-item' tabIndex=3 aria-label='restaurant address'>
 									<h3>Address</h3>
-									<p>{restaurant.address}</p>
+									<p tabIndex=4>{restaurant.address}</p>
 								</div>
-								<div className='category-item'>
+								<div className='category-item' aria-label='opening hours' tabIndex=3>
 									<h3>Opening hours</h3>
-									<p></p>
+									<p tabIndex=4></p>
 								</div>
-								<div className='category-item'>
+								<div className='category-item' tabIndex=3 aria-label='rating'>
 									<h3>Rating</h3>
-									<p>{this.getRating(restaurant.id)}
+									<p tabIndex=4>{this.getRating(restaurant.id)}
 										{this.getRating(restaurant.id) !== 'This location was not rated yet!' && (
 										<span> &#x2605;</span>)}
 									</p>
 								</div>
-								<div className='category-item'>
+								<div className='category-item' aria-label='price category' tabIndex=3>
 									<h3>Price category $</h3>
-									<p>{this.getPrice(restaurant.id)}</p>
+									<p tabIndex=4>{this.getPrice(restaurant.id)}</p>
 								</div>
 								{this.getURL(restaurant.id) && (
 									<a href={this.getURL(restaurant.id)} target="_blank">Restaurant's home page</a>

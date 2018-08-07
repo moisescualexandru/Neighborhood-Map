@@ -101,7 +101,7 @@
 }
 
 .restaurant-title {
-	font-size: 1em;
+	font-size: 1.2em;
 }
 
 .restaurant-details {
@@ -145,6 +145,8 @@ img {
 .info-window {
 	text-align: center;
 }
+
+/*Responsive*/
 
 @media screen and (max-width: 1200px) {
 	.search-box {
