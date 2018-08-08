@@ -78,9 +78,9 @@
 	/*padding: 3px;*/
 	height: 100%;
 	-webkit-transition: text .3s ease-in-out;
-	-webkit-box-shadow: 4px 4px 5px 4px grey;
-	-moz-box-shadow: 4px 4px 5px 4px grey;
-	box-shadow: 4px 4px 5px 4px grey;
+	-webkit-box-shadow: 4px 4px 5px 4px #703810;
+	-moz-box-shadow: 4px 4px 5px 4px #703810;
+	box-shadow: 4px 4px 5px 4px #703810;
 	border-radius: 2px;
 	width: 100%;
 	color: #703810;

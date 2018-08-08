@@ -159,7 +159,7 @@ class FloatingPanel extends Component {
 									<p>{this.getPrice(restaurant.id)}</p>
 								</div>
 								{this.getURL(restaurant.id) && (
-									<a href={this.getURL(restaurant.id)} target="_blank">Restaurant's home page</a>
+									<div><a href={this.getURL(restaurant.id)} target="_blank">Restaurant's home page</a></div>
 								)}
 								<img height='10px' src={Foursquare} alt="powered by foursquare"/>
 							</div>
