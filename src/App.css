@@ -146,8 +146,20 @@ img {
 	border-radius: 2px;
 }
 
+/*Infowindow*/
+
 .info-window {
+	margin: 0 auto;
 	text-align: center;
+	width: 100%;
+}
+
+.infowindow-title {
+	color: #703810;
+}
+
+.infowindow-address, .infowindow-footer {
+	color: #464420;
 }
 
 /*Responsive*/

@@ -33,11 +33,11 @@ class Info extends Component {
 		else {
 			return(
 				<div className='info-window'>
-					<h3>{this.props.name}</h3>
-					<p>Address: {this.props.address}</p>
+					<h3 className='infowindow-title'>{this.props.name}</h3>
+					<p className='infowindow-address'>Address: {this.props.address}</p>
 					<img src={this.getSrc()}
 					alt={this.props.name}/>
-					<p>For more details see the menu bar!</p>
+					<p className='infowindow-footer'>For more details see the menu bar!</p>
 				</div>
 			);	
 		}

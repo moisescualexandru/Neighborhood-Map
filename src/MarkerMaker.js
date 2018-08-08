@@ -9,7 +9,7 @@ class MarkerMaker extends Component {
 		return(
 			<Marker position={this.props.location} title={this.props.name} onClick={this.props.onClick} options={this.props.isOpen ? {icon: `${Pin}`} : {icon: `${Pin2}`}}>
 			{this.props.isOpen && (
-				<InfoWindow onCloseClick={this.props.onCloseClick}>
+				<InfoWindow onCloseClick={this.props.onCloseClick} id='infowindow'>
 					<Info 	name={this.props.name}
 							address={this.props.address}
 							id={this.props.id} />
