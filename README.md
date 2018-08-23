@@ -1,6 +1,6 @@
 ## Neighbourhood app
 
-This is an application that displays 12 restaurants from a neghbourhood from Bucharest.
+This is an application that displays 12 restaurants from a neghborhood from Bucharest.
 It contains information about:
 - address
 - open hours
